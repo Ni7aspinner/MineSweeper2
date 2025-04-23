@@ -14,7 +14,7 @@ class MainWindow : public QWidget
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    MainWindow(int mWidth=1920, int mHeight=1080, QWidget *parent = nullptr);
     ~MainWindow();
 
 private:
