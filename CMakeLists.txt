@@ -23,6 +23,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(MineSweeper2
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        mainwindow.ui
     )
 
 else()
