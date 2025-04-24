@@ -9,7 +9,6 @@ class GameGrid : public QWidget
 
 public:
     explicit GameGrid(int mWidth, int mHeight, QWidget *parent = nullptr);
-    ~GameGrid();
 };
 
 #endif

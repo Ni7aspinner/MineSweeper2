@@ -2,19 +2,18 @@
 #include "ui_head.h"
 #include <QPushButton>
 
-#define EBTNWIDTH 70
-#define EBTNHEIGHT 30
-
 Head::Head(int mWidth, int mHeight, QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Head)
 {
-    this->setMinimumSize(mWidth,mHeight/5);
+    QPalette pal = this->palette();
+    pal.setColor(QPalette::Window, Qt::gray);
+    this->setAutoFillBackground(true);
+    this->setPalette(pal);
+
+    this->setFixedSize(mWidth,mHeight);
+
     ui->setupUi(this);
-    ui->exitButton->setGeometry(mWidth-EBTNWIDTH, 0, EBTNWIDTH, EBTNHEIGHT);
-    QString resolution = QString::number(mWidth)+":"+QString::number(mHeight);
-    ui->labelRes->setText(resolution);
-    ui->labelRes->setMinimumWidth(50);
 
 }
 
