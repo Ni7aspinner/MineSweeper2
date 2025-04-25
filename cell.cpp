@@ -1,5 +1,6 @@
 #include "cell.h"
 #include "ui_cell.h"
+#include <qboxlayout.h>
 
 Cell::Cell(QSize cSize, QWidget *parent)
     : QWidget(parent)
@@ -13,9 +14,24 @@ Cell::Cell(QSize cSize, QWidget *parent)
     this->setPalette(pal);
 
     this->setFixedSize(cSize);
-    cellValue=1;
-    ui->value->setNum(cellValue);
+    ui->labelCValue->setFixedSize(cSize);
 
+    ui->labelCValue->setText("1");
+    ui->labelCValue->setAlignment(Qt::AlignCenter);
+    ui->labelNValue->setText("10");
+
+    QPalette labelPalette = ui->labelCValue->palette();
+    labelPalette.setColor(QPalette::WindowText, Qt::black);
+    ui->labelCValue->setPalette(labelPalette);
+    ui->labelNValue->setPalette(labelPalette);
+
+    QVBoxLayout *layout = new QVBoxLayout(this);
+    layout->setSpacing(1);
+    layout->setContentsMargins(0, 0, 1, 1);
+
+    layout->addWidget(ui->labelCValue);
+    //layout->addWidget(ui->pushButton);
+    this->setLayout(layout);
 }
 
 Cell::~Cell()
