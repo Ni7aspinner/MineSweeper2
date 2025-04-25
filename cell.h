@@ -12,10 +12,12 @@ class Cell : public QWidget
     Q_OBJECT
 
 public:
-    explicit Cell(QWidget *parent = nullptr);
+    explicit Cell(QSize cSize, QWidget *parent = nullptr);
     ~Cell();
 
 private:
+    int cellValue;
+    int nValue;
     Ui::Cell *ui;
 };
 

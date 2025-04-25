@@ -21,21 +21,37 @@ MainWindow::MainWindow(int mWidth, int mHeight, QWidget *parent)
     QString resolution = QString::number(this->size().width())+":"+QString::number(this->size().height());
     ui->labelRes->setText(resolution);
     ui->labelRes->setGeometry(0,0,50,15);
-
     ui->exitButton->setGeometry(mWidth-EBTNWIDTH, 0, EBTNWIDTH, EBTNHEIGHT);
 
     QPalette pal = this->palette();
-    pal.setColor(QPalette::Window, Qt::black);
+    pal.setColor(QPalette::Window, Qt::darkGray);
     this->setAutoFillBackground(true);
     this->setPalette(pal);
 
     int vSize = (mWidth-mHeight)/2;
+    int pixW = mHeight%13;
+    mWidth = mHeight-pixW+14;
 
-    head = new Head(mHeight,mHeight/5+5,this);
-    head->move(vSize+1,0);
+    QWidget *container = new QWidget(this);
+    container->setGeometry(vSize,0,mWidth,mHeight);
+    QVBoxLayout *mainLayout = new QVBoxLayout(container);
+    mainLayout->setSpacing(0);
+    mainLayout->setContentsMargins(0, 0, 0, 0);
 
-    game = new GameGrid(mWidth/3,3*mHeight/5+5,this);
-    game->move(vSize+1,mHeight/5+5);
+    head = new Head(mWidth,mHeight/8);
+
+    int pixH = (19*mHeight/24)%10;
+    game = new GameGrid(mWidth,(19*mHeight/24)-pixH+11);
+
+    auto headTemp = new Head(mWidth,mHeight/12);
+
+
+    qDebug() << "GameGrid constructed at" << game->geometry();
+
+    mainLayout->addWidget(head);
+    mainLayout->addWidget(game);
+    mainLayout->addWidget(headTemp);
+    game->raise();
 
 }
 
