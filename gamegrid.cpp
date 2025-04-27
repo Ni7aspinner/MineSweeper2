@@ -21,7 +21,10 @@ GameGrid::GameGrid(int mWidth, int mHeight, QWidget *parent) {
     for(int i=0; i<13; i++){
         for(int j=0; j<10; j++){
             gridLayout->addWidget(cellGrid[i][j],j,i);
+            connect(cellGrid[i][j],&Cell::entityButtonPressed,this, &GameGrid::updateNValues);
         }
     }
-
+}
+void GameGrid::updateNValues(int x, int y){
+    CellUpdater::decrementNeighboursNValue(cellGrid,x,y);
 }

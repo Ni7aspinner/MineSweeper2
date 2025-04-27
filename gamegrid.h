@@ -14,8 +14,10 @@ public:
 
 private:
     QVector<QVector<Cell *>> cellGrid;
-
     QGridLayout *gridLayout;
+
+private slots:
+    void updateNValues(int x, int y);
 };
 
 #endif

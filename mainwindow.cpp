@@ -45,9 +45,6 @@ MainWindow::MainWindow(int mWidth, int mHeight, QWidget *parent)
 
     auto headTemp = new Head(mWidth,mHeight/12);
 
-
-    qDebug() << "GameGrid constructed at" << game->geometry();
-
     mainLayout->addWidget(head);
     mainLayout->addWidget(game);
     mainLayout->addWidget(headTemp);

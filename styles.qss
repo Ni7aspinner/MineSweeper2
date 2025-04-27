@@ -1,0 +1,43 @@
+#MainWindow {
+    background-color: #1b1b23;
+}
+#Head {
+    background-color: #4b4b59;
+}
+#labelNValue {
+    background-color: #373747;
+}
+#entityButton {
+    border: 2px solid #b45f06;
+    border-radius: 0px;
+    background-color: #1b1b23;
+    color: white;
+    font: 24px;
+    font-weight: bold;
+}
+#entityButton:hover{
+    font: 24px;
+    font-weight: bold;
+    color: #b45f06;
+}
+#entityButton:pressed{
+    background-color: #1b1b23;
+    color: #b45f06;
+}
+#coverButton {
+    border: none;
+    border-radius: 0px;
+    background-color: #1b1b23;
+    color: white;
+}
+#coverButton:hover{
+    background-color: #1b1b23;
+    color: white;
+}
+#coverButton:pressed{
+    background-color: #1b1b23;
+    color: white;
+}
+QPushButton {
+transition: background-color 0.2s ease;
+}

@@ -8,7 +8,7 @@ QVector<QVector<Cell *>> CellUpdater::assignValues(QSize size){
         {8,4},{11,5},{5,6},
         {4,7},{5,8},{2,9},
         {1,10},{1,11},
-        {9,100}, {9,-1}};
+        {9,100}, {9,1}};
 
     QVector<int> shuffledValues = createAndShuffleVector(possibleValues);
 
@@ -17,7 +17,7 @@ QVector<QVector<Cell *>> CellUpdater::assignValues(QSize size){
     for(int i=0; i<13; i++){
         cellGrid[i].resize(10);
         for(int j=0; j<10; j++){
-            cellGrid[i][j] = new Cell(size,shuffledValues[i*10+j]);
+            cellGrid[i][j] = new Cell(size,shuffledValues[i*10+j],i,j);
         }
     }
     return calculateAllNValues(cellGrid);
@@ -34,8 +34,72 @@ QVector<int> CellUpdater::createAndShuffleVector(int possibleValues[14][2]){
     std::shuffle(vector.begin(),vector.end(), std::default_random_engine(std::chrono::system_clock::now().time_since_epoch().count()));
     return vector;
 }
-QVector<QVector<Cell *>> CellUpdater::decrementNeighboursNValue(QVector<QVector<Cell *>> cellGrid, int x, int y){
-    return cellGrid;
+void CellUpdater::decrementNeighboursNValue(QVector<QVector<Cell *>> cellGrid, int y, int x){
+    int value = cellGrid[x][y]->getCValue();
+    if(x==0){
+        if(y==0){
+            cellGrid[x][y+1]->decrementNValue(value);
+            cellGrid[x+1][y+1]->decrementNValue(value);
+            cellGrid[x+1][y]->decrementNValue(value);
+        }
+        else if(y==9){
+            cellGrid[x][y-1]->decrementNValue(value);
+            cellGrid[x+1][y]->decrementNValue(value);
+            cellGrid[x+1][y-1]->decrementNValue(value);
+        }
+        else{
+            cellGrid[x][y+1]->decrementNValue(value);
+            cellGrid[x][y-1]->decrementNValue(value);
+            cellGrid[x+1][y+1]->decrementNValue(value);
+            cellGrid[x+1][y]->decrementNValue(value);
+            cellGrid[x+1][y-1]->decrementNValue(value);
+        }
+    }
+    else if(x==12){
+        if(y==0){
+            cellGrid[x][y+1]->decrementNValue(value);
+            cellGrid[x-1][y+1]->decrementNValue(value);
+            cellGrid[x-1][y]->decrementNValue(value);
+        }
+        else if(y==9){
+            cellGrid[x][y-1]->decrementNValue(value);
+            cellGrid[x-1][y]->decrementNValue(value);
+            cellGrid[x-1][y-1]->decrementNValue(value);
+        }
+        else{
+            cellGrid[x][y+1]->decrementNValue(value);
+            cellGrid[x][y-1]->decrementNValue(value);
+            cellGrid[x-1][y+1]->decrementNValue(value);
+            cellGrid[x-1][y]->decrementNValue(value);
+            cellGrid[x-1][y-1]->decrementNValue(value);
+        }
+    }
+    else{
+        if(y==0){
+            cellGrid[x][y+1]->decrementNValue(value);
+            cellGrid[x-1][y+1]->decrementNValue(value);
+            cellGrid[x-1][y]->decrementNValue(value);
+            cellGrid[x+1][y+1]->decrementNValue(value);
+            cellGrid[x+1][y]->decrementNValue(value);
+        }
+        else if(y==9){
+            cellGrid[x][y-1]->decrementNValue(value);
+            cellGrid[x-1][y]->decrementNValue(value);
+            cellGrid[x-1][y-1]->decrementNValue(value);
+            cellGrid[x+1][y]->decrementNValue(value);
+            cellGrid[x+1][y-1]->decrementNValue(value);
+        }
+        else{
+            cellGrid[x][y+1]->decrementNValue(value);
+            cellGrid[x][y-1]->decrementNValue(value);
+            cellGrid[x-1][y+1]->decrementNValue(value);
+            cellGrid[x-1][y]->decrementNValue(value);
+            cellGrid[x-1][y-1]->decrementNValue(value);
+            cellGrid[x+1][y+1]->decrementNValue(value);
+            cellGrid[x+1][y]->decrementNValue(value);
+            cellGrid[x+1][y-1]->decrementNValue(value);
+        }
+    }
 }
 QVector<QVector<Cell *>> CellUpdater::calculateAllNValues(QVector<QVector<Cell *>> cellGrid){
     for(int i=0; i<13; i++){

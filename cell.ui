@@ -13,45 +13,11 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QPushButton" name="pushButton">
-   <property name="geometry">
-    <rect>
-     <x>180</x>
-     <y>250</y>
-     <width>16</width>
-     <height>18</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>PushButton</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="labelCValue">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>-10</y>
-     <width>211</width>
-     <height>231</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>20</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>C</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="labelNValue">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>0</y>
+     <x>150</x>
+     <y>50</y>
      <width>171</width>
      <height>181</height>
     </rect>
@@ -63,6 +29,32 @@
    </property>
    <property name="text">
     <string>N</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="coverButton">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>100</y>
+     <width>80</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="entityButton">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>190</y>
+     <width>80</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>PushButton</string>
    </property>
   </widget>
  </widget>

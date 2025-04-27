@@ -28,6 +28,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         gamegrid.h gamegrid.cpp
         cell.h cell.cpp cell.ui
         cellupdater.h cellupdater.cpp
+        styles.qss
     )
 
 else()
