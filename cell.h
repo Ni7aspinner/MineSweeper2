@@ -14,7 +14,10 @@ class Cell : public QWidget
 public:
     explicit Cell(QSize cSize, int value, QWidget *parent = nullptr);
     ~Cell();
-    int getValue();
+    int getCValue();
+    void setCValue(int value);
+    int getNValue();
+    void setNValue(int value);
 
 private:
     int cellValue;
@@ -22,4 +25,4 @@ private:
     Ui::Cell *ui;
 };
 
-#endif // CELL_H
+#endif
