@@ -12,8 +12,9 @@ class Cell : public QWidget
     Q_OBJECT
 
 public:
-    explicit Cell(QSize cSize, QWidget *parent = nullptr);
+    explicit Cell(QSize cSize, int value, QWidget *parent = nullptr);
     ~Cell();
+    int getValue();
 
 private:
     int cellValue;

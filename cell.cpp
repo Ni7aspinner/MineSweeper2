@@ -2,10 +2,14 @@
 #include "ui_cell.h"
 #include <qboxlayout.h>
 
-Cell::Cell(QSize cSize, QWidget *parent)
+int cellValue;
+int nValue;
+
+Cell::Cell(QSize cSize, int value, QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Cell)
 {
+    cellValue=value;
     ui->setupUi(this);
     this->setAutoFillBackground(true);
 
@@ -16,7 +20,7 @@ Cell::Cell(QSize cSize, QWidget *parent)
     this->setFixedSize(cSize);
     ui->labelCValue->setFixedSize(cSize);
 
-    ui->labelCValue->setText("1");
+    ui->labelCValue->setText(QString::number(cellValue));
     ui->labelCValue->setAlignment(Qt::AlignCenter);
     ui->labelNValue->setText("10");
 
@@ -37,4 +41,11 @@ Cell::Cell(QSize cSize, QWidget *parent)
 Cell::~Cell()
 {
     delete ui;
+}
+
+int getValue(){
+    return nValue;
+}
+void setValue(int value){
+    cellValue = value;
 }

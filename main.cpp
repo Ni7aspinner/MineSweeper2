@@ -6,9 +6,9 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    auto resolution = QGuiApplication::screens()[0]->geometry();
+    auto resolution = QGuiApplication::screens()[1]->geometry();
     MainWindow *w = new MainWindow(resolution.width(),resolution.height());
-    w->setGeometry(QGuiApplication::screens()[0]->geometry());
+    w->setGeometry(QGuiApplication::screens()[1]->geometry());
     w->setWindowTitle("MINESWEEPER 2");
     w->showFullScreen();
     QPushButton *exitButton = w->findChild<QPushButton *>("exitButton");

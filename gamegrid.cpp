@@ -2,6 +2,7 @@
 #include "cell.h"
 #include <qgridlayout.h>
 #include <qpushbutton.h>
+#include "cellupdater.h"
 
 GameGrid::GameGrid(int mWidth, int mHeight, QWidget *parent) {
     QPalette pal = this->palette();
@@ -16,11 +17,9 @@ GameGrid::GameGrid(int mWidth, int mHeight, QWidget *parent) {
     gridLayout = new QGridLayout(this);
     gridLayout->setSpacing(1);
     gridLayout->setContentsMargins(1, 1, 1, 1);
-    cellGrid.resize(13);
+    cellGrid = CellUpdater::assignValues(QSize(mWidth/13,mHeight/10));
     for(int i=0; i<13; i++){
-        cellGrid[i].resize(10);
         for(int j=0; j<10; j++){
-            cellGrid[i][j] = new Cell(QSize(mWidth/13,mHeight/10),this);
             gridLayout->addWidget(cellGrid[i][j],j,i);
         }
     }
