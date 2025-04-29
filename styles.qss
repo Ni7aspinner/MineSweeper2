@@ -1,7 +1,14 @@
 #MainWindow {
     background-color: #1b1b23;
 }
-#Head {
+#head {
+    background-color: #4b4b59;
+    qproperty-alignment: 'AlignCenter';
+    color: white;
+    font: 24px;
+    font-weight: bold;
+}
+#player {
     background-color: #4b4b59;
 }
 #labelNValue {
@@ -38,6 +45,48 @@
     background-color: #1b1b23;
     color: white;
 }
-QPushButton {
-transition: background-color 0.2s ease;
+#exitButton{
+    background-color: #373747;
+    border-radius: 0px;
 }
+#scrapLabel{
+    color: #b45f06;
+    font: 24px;
+    font-weight: bold;
+}
+#upgradeButton{
+    border: 3px solid white;
+    border-radius: 0px;
+    color: white;
+    font: 20px;
+    font-weight: bold;
+}
+#upgradeButton:hover{
+    color: white;
+}
+#upgradeButton:pressed{
+    color: white;
+}
+#progressBar {
+    border: 2px solid #e8cc17;
+    color: white;
+    border-radius: 0px;
+    background-color: #1e1e1e;
+    text-align: center;
+    font: bold 20px;
+}
+
+#progressBar:chunk {
+    background-color: #e8cc17;
+    border-radius: 0px;
+    color: black;
+}
+#progressBarDead {
+    border: 2px solid #e83617;
+    color: white;
+    border-radius: 0px;
+    background-color: #1e1e1e;
+    text-align: center;
+    font: bold 20px;
+}
+

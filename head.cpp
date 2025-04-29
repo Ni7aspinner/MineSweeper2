@@ -1,6 +1,9 @@
 #include "head.h"
 #include "ui_head.h"
 #include <QPushButton>
+#include <qprogressdialog.h>
+#include <qboxlayout.h>
+
 
 Head::Head(int mWidth, int mHeight, QWidget *parent)
     : QWidget(parent)
@@ -11,7 +14,6 @@ Head::Head(int mWidth, int mHeight, QWidget *parent)
     this->setFixedSize(mWidth,mHeight);
 
     ui->setupUi(this);
-
 }
 
 Head::~Head()

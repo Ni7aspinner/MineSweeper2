@@ -3,6 +3,7 @@
 
 #include "gamegrid.h"
 #include "head.h"
+#include "player.h"
 
 #include <QWidget>
 
@@ -25,5 +26,6 @@ private:
     Ui::MainWindow *ui;
     Head *head;
     GameGrid *game;
+    Player* player;
 };
 #endif

@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "player.h"
 #include "ui_mainwindow.h"
 #include "head.h"
 #include "gamegrid.h"
@@ -38,17 +39,19 @@ MainWindow::MainWindow(int mWidth, int mHeight, QWidget *parent)
     mainLayout->setSpacing(0);
     mainLayout->setContentsMargins(0, 0, 0, 0);
 
-    head = new Head(mWidth,mHeight/8);
+    head = new Head(mWidth,mHeight/10);
 
     int pixH = (19*mHeight/24)%10;
     game = new GameGrid(mWidth,(19*mHeight/24)-pixH+11);
 
-    auto headTemp = new Head(mWidth,mHeight/12);
+    player = new Player(mWidth,mHeight/11);
 
     mainLayout->addWidget(head);
     mainLayout->addWidget(game);
-    mainLayout->addWidget(headTemp);
-    game->raise();
+    mainLayout->addWidget(player);
+
+    connect(game,&GameGrid::entityButtonClicked,player,&Player::getCellValue);
+    connect(game,&GameGrid::coverButtonClicked,player,&Player::getDamage);
 
 }
 

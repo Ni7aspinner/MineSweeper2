@@ -21,7 +21,13 @@ GameGrid::GameGrid(int mWidth, int mHeight, QWidget *parent) {
     for(int i=0; i<13; i++){
         for(int j=0; j<10; j++){
             gridLayout->addWidget(cellGrid[i][j],j,i);
+            connect(cellGrid[i][j],&Cell::coverButtonPressed,[i,j,this](){
+                emit coverButtonClicked(cellGrid[i][j]->getCValue());
+            });
             connect(cellGrid[i][j],&Cell::entityButtonPressed,this, &GameGrid::updateNValues);
+            connect(cellGrid[i][j],&Cell::entityButtonPressed,[i,j,this](){
+                emit entityButtonClicked(cellGrid[i][j]->getCValue());
+            });
         }
     }
 }

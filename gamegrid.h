@@ -12,6 +12,10 @@ class GameGrid : public QWidget
 public:
     explicit GameGrid(int mWidth, int mHeight, QWidget *parent = nullptr);
 
+signals:
+    void entityButtonClicked(int value);
+    void coverButtonClicked(int damage);
+
 private:
     QVector<QVector<Cell *>> cellGrid;
     QGridLayout *gridLayout;

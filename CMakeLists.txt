@@ -29,6 +29,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         cell.h cell.cpp cell.ui
         cellupdater.h cellupdater.cpp
         styles.qss
+        player.h player.cpp
     )
 
 else()
