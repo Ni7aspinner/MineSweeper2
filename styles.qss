@@ -19,11 +19,10 @@
     border-radius: 0px;
     background-color: #1b1b23;
     color: white;
-    font: 24px;
+    font: 12px;
     font-weight: bold;
 }
 #entityButton:hover{
-    font: 24px;
     font-weight: bold;
     color: #b45f06;
 }
@@ -36,6 +35,8 @@
     border-radius: 0px;
     background-color: #1b1b23;
     color: white;
+    font: 12px;
+    font-weight: bold;
 }
 #coverButton:hover{
     background-color: #1b1b23;

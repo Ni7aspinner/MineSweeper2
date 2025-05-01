@@ -11,7 +11,7 @@ public:
     static void decrementNeighboursNValue(QVector<QVector<Cell *>> cellGrid, int x, int y);
 
 private:
-    static QVector<int> createAndShuffleVector(int possibleValues[14][2]);
+    static QVector<Entity *> createAndShuffleVector(int possibleValues[14][2]);
     static QVector<QVector<Cell *>> calculateAllNValues(QVector<QVector<Cell *>> cellGrid);
     static int calculateNValue(QVector<QVector<Cell *>> cellGrid, int x, int y);
 };

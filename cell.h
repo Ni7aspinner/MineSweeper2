@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <qstackedlayout.h>
+#include "entity.h"
 
 namespace Ui {
 class Cell;
@@ -13,9 +14,10 @@ class Cell : public QWidget
     Q_OBJECT
 
 public:
-    explicit Cell(QSize cSize, int value, int x, int y, QWidget *parent = nullptr);
+    explicit Cell(QSize cSize, Entity *entity, QWidget *parent = nullptr);
     ~Cell();
-    int getCValue();
+    int getDamage();
+    int getReward();
     void setCValue(int value);
     int getNValue();
     void setNValue(int value);
@@ -25,15 +27,13 @@ signals:
     void entityButtonPressed(int x, int y);
     void coverButtonPressed(int x, int y);
 
-private:
-    int cellValue;
+protected:
     int nValue;
-    int cx;
-    int cy;
+    Entity *entity;
     QStackedLayout *layout;
     Ui::Cell *ui;
 
-private slots:
+protected slots:
     void hideCoverButton();
     void hideEntityButton();
 };
