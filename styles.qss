@@ -1,5 +1,5 @@
-#MainWindow {
-    background-color: #1b1b23;
+* {
+    font-family: "Minecraft";
 }
 #head {
     background-color: #4b4b59;
@@ -89,5 +89,8 @@
     background-color: #1e1e1e;
     text-align: center;
     font: bold 20px;
+}
+#exitButton{
+    border: 3px solid white;
 }
 

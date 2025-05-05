@@ -2,6 +2,7 @@
 #define CELL_H
 
 #include <QWidget>
+#include <qlabel.h>
 #include <qstackedlayout.h>
 #include "entity.h"
 
@@ -29,9 +30,14 @@ signals:
 
 protected:
     int nValue;
+    QLabel *image1Label;
+    QLabel *image2Label;
+    QLabel *damageLabel;
+    QLabel *rewardLabel;
     Entity *entity;
     QStackedLayout *layout;
     Ui::Cell *ui;
+    void updateCell();
 
 protected slots:
     void hideCoverButton();

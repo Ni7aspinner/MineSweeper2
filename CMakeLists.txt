@@ -31,6 +31,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         styles.qss
         player.h player.cpp
         entity.h entity.cpp
+        resources.qrc
 
     )
 

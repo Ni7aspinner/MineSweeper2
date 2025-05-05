@@ -2,6 +2,7 @@
 #define ENTITY_H
 
 #include <qobject.h>
+#include <qpixmap.h>
 class Entity
 {
 public:
@@ -9,6 +10,7 @@ public:
     int id;
     int x;
     int y;
+    QPixmap bg;
     QString name;
     int reward=0;
     int damage=0;

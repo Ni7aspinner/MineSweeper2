@@ -24,9 +24,26 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>71</width>
+     <width>81</width>
      <height>16</height>
     </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="sizeIncrement">
+    <size>
+     <width>10</width>
+     <height>10</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>RESOLUTION</string>
@@ -37,12 +54,12 @@
     <rect>
      <x>520</x>
      <y>0</y>
-     <width>30</width>
+     <width>32</width>
      <height>20</height>
     </rect>
    </property>
    <property name="text">
-    <string>Exit</string>
+    <string>EXIT</string>
    </property>
   </widget>
  </widget>

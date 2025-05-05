@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/style">
+        <file>styles.qss</file>
+    </qresource>
+    <qresource prefix="/images/backgrounds">
+        <file>background.png</file>
+    </qresource>
+    <qresource prefix="/font">
+        <file>minecraft.ttf</file>
+    </qresource>
+    <qresource prefix="/images/enemies">
+        <file>Enemy1.png</file>
+        <file>Enemy2.png</file>
+        <file>Enemy3.png</file>
+    </qresource>
+</RCC>

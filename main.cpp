@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include <QPushButton>
 #include <QApplication>
+#include <QFontDatabase>
 #include <QScreen>
 #include <QFile>
 #include <QDir>
@@ -13,7 +14,11 @@ int main(int argc, char *argv[])
 
     MainWindow *w = new MainWindow(resolution.width(),resolution.height());
 
-    QString qssPath = QDir::cleanPath(QApplication::applicationDirPath() + "/../../styles.qss");
+    int id = QFontDatabase::addApplicationFont(":/font/minecraft.ttf");
+    QString family = QFontDatabase::applicationFontFamilies(id).at(0);
+    qDebug() << "Loaded font family:" << family;
+
+    QString qssPath = QDir::cleanPath(":/style/styles.qss");
     QFile file(qssPath);
 
     if (file.open(QFile::ReadOnly)) {
@@ -24,6 +29,14 @@ int main(int argc, char *argv[])
 
     w->setGeometry(QGuiApplication::screens()[0]->geometry());
     w->setWindowTitle("MINESWEEPER 2");
+
+    QPixmap bg(":/images/backgrounds/background.png");
+    bg = bg.scaled(w->size(), Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
+    QPalette palette;
+    palette.setBrush(QPalette::Window, bg);
+    w->setAutoFillBackground(true);
+    w->setPalette(palette);
+
     w->showFullScreen();
 
     QPushButton *exitButton = w->findChild<QPushButton *>("exitButton");

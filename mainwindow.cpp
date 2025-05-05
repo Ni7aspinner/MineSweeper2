@@ -18,7 +18,7 @@ MainWindow::MainWindow(int mWidth, int mHeight, QWidget *parent)
     this->setFixedSize(mWidth,mHeight);
 
     ui->setupUi(this);
-
+    ui->labelRes->setFixedSize(80,30);
     QString resolution = QString::number(this->size().width())+":"+QString::number(this->size().height());
     ui->labelRes->setText(resolution);
     ui->labelRes->setGeometry(0,0,50,15);
@@ -44,7 +44,7 @@ MainWindow::MainWindow(int mWidth, int mHeight, QWidget *parent)
     int pixH = (19*mHeight/24)%10;
     game = new GameGrid(mWidth,(19*mHeight/24)-pixH+11);
 
-    player = new Player(mWidth,mHeight/11);
+    player = new Player(mWidth,(mHeight - head->size().height() - game->size().height()));
 
     mainLayout->addWidget(head);
     mainLayout->addWidget(game);

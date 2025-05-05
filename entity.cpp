@@ -8,12 +8,15 @@ Entity::Entity(int id, int coordinateX, int coordinateY): id(id), x(coordinateX)
     switch(id){
         case 1:
             name = QString("Enemy1");
+            bg = QPixmap(":/images/enemies/Enemy1.png");
             break;
         case 2:
             name = QString("Enemy2");
+            bg = QPixmap(":/images/enemies/Enemy2.png");
             break;
         case 3:
             name = QString("Enemy3");
+            bg = QPixmap(":/images/enemies/Enemy3.png");
             break;
         case 4:
             name = QString("Enemy4");
