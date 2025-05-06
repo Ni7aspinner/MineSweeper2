@@ -9,6 +9,7 @@ Cell::Cell(QSize cSize, Entity *entity, QWidget *parent)
     , entity(entity)
 {
     ui->setupUi(this);
+
     this->setAutoFillBackground(true);
 
     QPalette pal = this->palette();
@@ -16,8 +17,8 @@ Cell::Cell(QSize cSize, Entity *entity, QWidget *parent)
 
     this->setFixedSize(cSize);
 
-    QSize imageSize = QSize(cSize.width(),6*cSize.height()/10);
-    QSize valueSize = QSize(cSize.width(),4*cSize.height()/10);
+    QSize imageSize = QSize(cSize.width(),8*cSize.height()/10);
+    QSize valueSize = QSize(cSize.width(),2*cSize.height()/10);
 
     ui->entityButton->setFixedSize(cSize);
     ui->entityButton->setText("");
@@ -27,7 +28,7 @@ Cell::Cell(QSize cSize, Entity *entity, QWidget *parent)
 
     QVBoxLayout* coverLayout = new QVBoxLayout();
     coverLayout->setSpacing(0);
-    coverLayout->setContentsMargins(0, 0, 0, 0);
+    coverLayout->setContentsMargins(0, 0, 1, 0);
     image1Label = new QLabel();
     image1Label->setAlignment(Qt::AlignCenter);
     image1Label->setFixedSize(imageSize);
@@ -42,7 +43,7 @@ Cell::Cell(QSize cSize, Entity *entity, QWidget *parent)
 
     QVBoxLayout* entityLayout = new QVBoxLayout();
     entityLayout->setSpacing(0);
-    entityLayout->setContentsMargins(0, 0, 0, 0);
+    entityLayout->setContentsMargins(0, 0, 1, 0);
     image2Label = new QLabel();
     image2Label->setFixedSize(imageSize);
     image2Label->setAlignment(Qt::AlignCenter);
@@ -54,25 +55,26 @@ Cell::Cell(QSize cSize, Entity *entity, QWidget *parent)
     ui->entityButton->setLayout(entityLayout);
 
     if(!entity->bg.isNull()){
-        entity->bg = entity->bg.scaled(image1Label->size()/2, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
+        entity->bg = entity->bg.scaled(7*image1Label->size()/10, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
         image1Label->setPixmap(entity->bg);
         image2Label->setPixmap(entity->bg);
     }
     else{
         image1Label->setText(entity->name);
-        if(entity->damage!=0){
-            damageLabel = new QLabel(QString::number(entity->damage));
-        }
-        else{
-            damageLabel->setText("");
-        }
         image2Label->setText(entity->name);
-        if(entity->reward!=0){
-            rewardLabel = new QLabel("+"+QString::number(entity->reward));
-        }
-        else{
-            rewardLabel->setText("");
-        }
+    }
+
+    if(entity->damage!=0){
+        damageLabel->setText(QString::number(entity->damage));
+    }
+    else{
+        damageLabel->setText("");
+    }
+    if(entity->reward!=0){
+        rewardLabel->setText("+"+QString::number(entity->reward));
+    }
+    else{
+        rewardLabel->setText("");
     }
     ui->labelNValue->setAlignment(Qt::AlignCenter);
 
@@ -131,32 +133,56 @@ void Cell::decrementNValue(int value){
 }
 void Cell::hideCoverButton(){
     if(entity->id==0){emit entityButtonPressed(entity->x,entity->y);}
-    if(entity->transform!=0 && entity->reward!=0) updateCell();
+    else if(entity->id==26){emit activeScanner(false);emit entityButtonPressed(entity->x,entity->y);}
+    else if(entity->transform!=0 && entity->reward==0) updateCell();
     else layout->setCurrentWidget(ui->entityButton);
 }
 void Cell::hideEntityButton(){
     if(entity->transform!=0) updateCell();
+    else if(entity->id==20){
+        layout->setCurrentWidget(ui->labelNValue);
+        emit healPlayer();
+    }
+    else if(entity->id==27){emit activeScanner(true);layout->setCurrentWidget(ui->labelNValue);}
     else layout->setCurrentWidget(ui->labelNValue);
 }
 void Cell::updateCell(){
-    int tempX = entity->x;
-    int tempY = entity->y;
-    int tempId = entity->transform;
-    entity = new Entity(tempId,tempX,tempY);
-    image1Label->setText(entity->name);
-    if(entity->damage!=0){
-        damageLabel = new QLabel(QString::number(entity->damage));
+    if(damageLabel->isHidden()){
+        image1Label->show();
+        damageLabel->show();
     }
     else{
-        damageLabel->setText("");
+        int tempX = entity->x;
+        int tempY = entity->y;
+        int tempId = entity->transform;
+        entity = new Entity(tempId,tempX,tempY);
+        int id = entity->id;
+        if(id==20 || id==21 || id==22 || id==23 || id==24){layout->setCurrentWidget(ui->entityButton);}
+        image1Label->setText(entity->name);
+        if(entity->damage!=0){
+            damageLabel->setText(QString::number(entity->damage));
+        }
+        else{
+            damageLabel->setText("");
+        }
+        image2Label->setText(entity->name);
+        if(entity->reward!=0){
+            rewardLabel->setText("+"+QString::number(entity->reward));
+        }
+        else{
+            rewardLabel->setText("");
+        }
+        if(entity->id==21 || entity->id==12) layout->setCurrentWidget(ui->entityButton);
     }
-    image2Label->setText(entity->name);
-    if(entity->reward!=0){
-        rewardLabel = new QLabel("+"+QString::number(entity->reward));
-    }
-    else{
-        rewardLabel->setText("");
-    }
+}
+void Cell::setVisible(){
     image1Label->show();
     damageLabel->show();
+    if(entity->id==20) layout->setCurrentWidget(ui->entityButton);
+}
+bool Cell::scanablePoint(){
+    if(ui->coverButton==layout->currentWidget()){
+        return true;
+    }
+    return false;
 }

@@ -104,5 +104,9 @@ void Player::getDamage(int damage){
         progressBar->setValue(energy);
     }
 }
+void Player::getHeal(){
+    energy=maxEnergy;
+    progressBar->setValue(energy);
+}
 
 

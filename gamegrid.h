@@ -15,6 +15,7 @@ public:
 signals:
     void entityButtonClicked(int value);
     void coverButtonClicked(int damage);
+    void healPlayer();
 
 private:
     QVector<QVector<Cell *>> cellGrid;

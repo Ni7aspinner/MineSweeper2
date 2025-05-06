@@ -23,10 +23,14 @@ public:
     int getNValue();
     void setNValue(int value);
     void decrementNValue(int value);
+    void setVisible();
+    bool scanablePoint();
 
 signals:
     void entityButtonPressed(int x, int y);
     void coverButtonPressed(int x, int y);
+    void healPlayer();
+    void activeScanner(bool random);
 
 protected:
     int nValue;

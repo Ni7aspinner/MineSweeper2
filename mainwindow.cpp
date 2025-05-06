@@ -52,6 +52,7 @@ MainWindow::MainWindow(int mWidth, int mHeight, QWidget *parent)
 
     connect(game,&GameGrid::entityButtonClicked,player,&Player::getCellValue);
     connect(game,&GameGrid::coverButtonClicked,player,&Player::getDamage);
+    connect(game,&GameGrid::healPlayer,player,&Player::getHeal);
 
 }
 

@@ -1,6 +1,7 @@
 #include "cellupdater.h"
 #include "cell.h"
 #include "entity.h"
+#include <qdatetime.h>
 #include <random>
 
 
@@ -25,6 +26,22 @@ QVector<QVector<Cell *>> CellUpdater::assignValues(QSize size){
         }
     }
     return calculateAllNValues(cellGrid);
+}
+void CellUpdater::activeScanner(QVector<QVector<Cell *>> cellGrid, int x, int y, bool random){
+    if(random==true){
+        std::default_random_engine engine(std::chrono::system_clock::now().time_since_epoch().count());
+        std::uniform_int_distribution<int> distX(0, 12);
+        std::uniform_int_distribution<int> distY(0, 9);
+        while(1){
+            int randomX = distX(engine);
+            int randomY = distY(engine);
+            if(cellGrid[randomX][randomY]->scanablePoint()){
+                setNeighboursVisible(cellGrid,randomX,randomY);
+                break;
+            }
+        }
+    }
+    else setNeighboursVisible(cellGrid,x,y);
 }
 QVector<Entity *> CellUpdater::createAndShuffleVector(int possibleValues[14][2]){
     QVector<int> vector(130,0);
@@ -188,5 +205,83 @@ int CellUpdater::calculateNValue(QVector<QVector<Cell *>> cellGrid, int x, int y
         }
     }
     return sum;
+}
+void CellUpdater::setNeighboursVisible(QVector<QVector<Cell *>> cellGrid, int x, int y){
+    if(x==0){
+        if(y==0){
+            cellGrid[x][y+1]->setVisible();
+            cellGrid[x+1][y+1]->setVisible();
+            cellGrid[x+1][y]->setVisible();
+        }
+        else if(y==9){
+            cellGrid[x][y-1]->setVisible();
+            cellGrid[x+1][y]->setVisible();
+            cellGrid[x+1][y-1]->setVisible();
+        }
+        else{
+            cellGrid[x][y+1]->setVisible();
+            cellGrid[x][y-1]->setVisible();
+            cellGrid[x+1][y+1]->setVisible();
+            cellGrid[x+1][y]->setVisible();
+            cellGrid[x+1][y-1]->setVisible();
+        }
+    }
+    else if(x==12){
+        if(y==0){
+            cellGrid[x][y+1]->setVisible();
+            cellGrid[x-1][y+1]->setVisible();
+            cellGrid[x-1][y]->setVisible();
+        }
+        else if(y==9){
+            cellGrid[x][y-1]->setVisible();
+            cellGrid[x-1][y]->setVisible();
+            cellGrid[x-1][y-1]->setVisible();
+        }
+        else{
+            cellGrid[x][y+1]->setVisible();
+            cellGrid[x][y-1]->setVisible();
+            cellGrid[x-1][y+1]->setVisible();
+            cellGrid[x-1][y]->setVisible();
+            cellGrid[x-1][y-1]->setVisible();
+        }
+    }
+    else{
+        if(y==0){
+            cellGrid[x][y+1]->setVisible();
+            cellGrid[x-1][y+1]->setVisible();
+            cellGrid[x-1][y]->setVisible();
+            cellGrid[x+1][y+1]->setVisible();
+            cellGrid[x+1][y]->setVisible();
+        }
+        else if(y==9){
+            cellGrid[x][y-1]->setVisible();
+            cellGrid[x-1][y]->setVisible();
+            cellGrid[x-1][y-1]->setVisible();
+            cellGrid[x+1][y]->setVisible();
+            cellGrid[x+1][y-1]->setVisible();
+        }
+        else{
+            cellGrid[x][y+1]->setVisible();
+            cellGrid[x][y-1]->setVisible();
+            cellGrid[x-1][y+1]->setVisible();
+            cellGrid[x-1][y]->setVisible();
+            cellGrid[x-1][y-1]->setVisible();
+            cellGrid[x+1][y+1]->setVisible();
+            cellGrid[x+1][y]->setVisible();
+            cellGrid[x+1][y-1]->setVisible();
+        }
+    }
+    if(x>2){
+        cellGrid[x-2][y]->setVisible();
+    }
+    if(x<11){
+        cellGrid[x+2][y]->setVisible();
+    }
+    if(y>2){
+        cellGrid[x][y-2]->setVisible();
+    }
+    if(y<8){
+        cellGrid[x][y+2]->setVisible();
+    }
 }
 

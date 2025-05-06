@@ -17,6 +17,7 @@ public:
 public slots:
     void getCellValue(int value);
     void getDamage(int damage);
+    void getHeal();
 
 private:
     int level;
