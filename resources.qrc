@@ -4,6 +4,14 @@
     </qresource>
     <qresource prefix="/images/backgrounds">
         <file>background.png</file>
+        <file>Bg2.PNG</file>
+        <file>Bg1.PNG</file>
+        <file>Bg3.PNG</file>
+        <file>Bg4.PNG</file>
+        <file>Bg5.PNG</file>
+        <file>Bg6.PNG</file>
+        <file>Bg7.PNG</file>
+        <file>Bg8.PNG</file>
     </qresource>
     <qresource prefix="/font">
         <file>minecraft.ttf</file>
