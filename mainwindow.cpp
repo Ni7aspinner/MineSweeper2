@@ -2,8 +2,11 @@
 #include "player.h"
 #include "ui_mainwindow.h"
 #include "head.h"
+#include <QTimer>
+#include <QPainter>
 #include "gamegrid.h"
 #include <QPushButton>
+#include <random>
 
 #define EBTNWIDTH 40
 #define EBTNHEIGHT 30
@@ -33,6 +36,8 @@ MainWindow::MainWindow(int mWidth, int mHeight, QWidget *parent)
     int pixW = mHeight%13;
     mWidth = mHeight-pixW+14;
 
+    animateBg();
+
     QWidget *container = new QWidget(this);
     container->setGeometry(vSize,0,mWidth,mHeight);
     QVBoxLayout *mainLayout = new QVBoxLayout(container);
@@ -59,5 +64,36 @@ MainWindow::MainWindow(int mWidth, int mHeight, QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::animateBg(){
+    std::default_random_engine engine(std::chrono::system_clock::now().time_since_epoch().count());
+    std::uniform_int_distribution<int> distX(1, 8);
+    QString bgPath = ":/images/backgrounds/Bg" +QString::number(distX(engine))+".PNG";
+
+    bgPixMap = QPixmap(bgPath);
+    bgOffset = QPoint(0, 0);
+
+    bgTimer = new QTimer(this);
+    connect(bgTimer, &QTimer::timeout, this, [this]() {
+        bgOffset -= QPoint(1, 1);
+        update();
+    });
+    bgTimer->start(50);
+}
+void MainWindow::paintEvent(QPaintEvent *event) {
+    QPainter painter(this);
+    if(!bgPixMap.isNull()){
+
+        int startX = bgOffset.x() % bgPixMap.width();
+        int startY = bgOffset.y() % bgPixMap.height();
+
+        for(int x=startX; x<this->width(); x+=bgPixMap.width()) {
+            for(int y=startY; y<this->height(); y+=bgPixMap.height()) {
+                painter.drawPixmap(x, y, bgPixMap);
+            }
+        }
+    }
+    QWidget::paintEvent(event);
 }
 

@@ -27,5 +27,10 @@ private:
     Head *head;
     GameGrid *game;
     Player* player;
+    void animateBg();
+    QPixmap bgPixMap;
+    QPoint bgOffset;
+    QTimer *bgTimer;
+    void paintEvent(QPaintEvent *event);
 };
 #endif

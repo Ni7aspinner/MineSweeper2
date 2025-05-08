@@ -17,8 +17,13 @@
         <file>minecraft.ttf</file>
     </qresource>
     <qresource prefix="/images/enemies">
-        <file>Enemy1.png</file>
-        <file>Enemy2.png</file>
-        <file>Enemy3.png</file>
+        <file alias="boss.png">PNG/boss.png</file>
+        <file alias="enemy1.png">PNG/enemy1.png</file>
+        <file alias="enemy2.png">PNG/enemy2.png</file>
+        <file alias="enemy3.png">PNG/enemy3.png</file>
+        <file alias="king.png">PNG/king.png</file>
+        <file alias="scanner.png">PNG/scan.png</file>
+        <file alias="chest.png">PNG/chest.png</file>
+        <file alias="mimic.png">PNG/mimic.png</file>
     </qresource>
 </RCC>

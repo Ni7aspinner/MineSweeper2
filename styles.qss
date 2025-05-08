@@ -1,6 +1,9 @@
 * {
     font-family: "Minecraft";
 }
+MainWindow{
+    background-color: #000000;
+}
 #head {
     background-color: #4b4b59;
     qproperty-alignment: 'AlignCenter';

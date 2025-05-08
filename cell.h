@@ -19,6 +19,7 @@ public:
     ~Cell();
     int getDamage();
     int getReward();
+
     void setCValue(int value);
     int getNValue();
     void setNValue(int value);
@@ -39,6 +40,7 @@ protected:
     QLabel *damageLabel;
     QLabel *rewardLabel;
     Entity *entity;
+    QSize imageSize;
     QStackedLayout *layout;
     Ui::Cell *ui;
     void updateCell();

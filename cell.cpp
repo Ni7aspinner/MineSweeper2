@@ -16,8 +16,7 @@ Cell::Cell(QSize cSize, Entity *entity, QWidget *parent)
     this->setPalette(pal);
 
     this->setFixedSize(cSize);
-
-    QSize imageSize = QSize(cSize.width(),8*cSize.height()/10);
+    imageSize = QSize(cSize.width(),8*cSize.height()/10);
     QSize valueSize = QSize(cSize.width(),2*cSize.height()/10);
 
     ui->entityButton->setFixedSize(cSize);
@@ -55,7 +54,7 @@ Cell::Cell(QSize cSize, Entity *entity, QWidget *parent)
     ui->entityButton->setLayout(entityLayout);
 
     if(!entity->bg.isNull()){
-        entity->bg = entity->bg.scaled(7*image1Label->size()/10, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
+        entity->bg = entity->bg.scaled(imageSize.width()-20,imageSize.height()-20, Qt::KeepAspectRatioByExpanding, Qt::FastTransformation);
         image1Label->setPixmap(entity->bg);
         image2Label->setPixmap(entity->bg);
     }
@@ -91,12 +90,12 @@ Cell::Cell(QSize cSize, Entity *entity, QWidget *parent)
     layout->addWidget(ui->coverButton);
     layout->setCurrentWidget(ui->coverButton);
 
-    connect(ui->coverButton, &QPushButton::clicked, [this, entity](){
+    connect(ui->coverButton, &QPushButton::clicked,this,[this,entity](){
         emit coverButtonPressed(entity->x,entity->y);
     });
     connect(this, &Cell::coverButtonPressed, this, &Cell::hideCoverButton);
 
-    connect(ui->entityButton, &QPushButton::clicked, [this, entity](){
+    connect(ui->entityButton, &QPushButton::clicked, this,[this,entity](){
         emit entityButtonPressed(entity->x,entity->y);
     });
     connect(this, &Cell::entityButtonPressed, this, &Cell::hideEntityButton);
@@ -158,7 +157,16 @@ void Cell::updateCell(){
         entity = new Entity(tempId,tempX,tempY);
         int id = entity->id;
         if(id==20 || id==21 || id==22 || id==23 || id==24){layout->setCurrentWidget(ui->entityButton);}
-        image1Label->setText(entity->name);
+
+        if(!entity->bg.isNull()){
+            entity->bg = entity->bg.scaled(imageSize.width()-20,imageSize.height()-20, Qt::KeepAspectRatioByExpanding, Qt::FastTransformation);
+            image1Label->setPixmap(entity->bg);
+            image2Label->setPixmap(entity->bg);
+        }
+        else{
+            image1Label->setText(entity->name);
+            image2Label->setText(entity->name);
+        }
         if(entity->damage!=0){
             damageLabel->setText(QString::number(entity->damage));
         }
