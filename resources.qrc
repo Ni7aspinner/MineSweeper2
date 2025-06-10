@@ -25,5 +25,6 @@
         <file alias="scanner.png">PNG/scan.png</file>
         <file alias="chest.png">PNG/chest.png</file>
         <file alias="mimic.png">PNG/mimic.png</file>
+        <file alias="enemy4.png">PNG/enemy4.png</file>
     </qresource>
 </RCC>

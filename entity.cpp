@@ -20,6 +20,7 @@ Entity::Entity(int id, int coordinateX, int coordinateY): id(id), x(coordinateX)
             break;
         case 4:
             name = QString("Enemy4");
+            bg = QPixmap(":/images/enemies/enemy4.png");
             break;
         case 5:
             name = QString("Enemy5");
@@ -45,13 +46,13 @@ Entity::Entity(int id, int coordinateX, int coordinateY): id(id), x(coordinateX)
             break;
         case 11:
             name = QString("Chest");
-            bg = QPixmap(":/images/enemies/chest.png");// has black background
+            bg = QPixmap(":/images/enemies/chest.png");
+            damage=11;// has black background
             transform = 12;
             break;
         case 12:
             name = QString("Mimic");
             bg = QPixmap(":/images/enemies/mimic.png");
-            damage=11;
             reward=11;
             break;
         case 13:
