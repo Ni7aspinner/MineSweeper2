@@ -1,30 +1,37 @@
 <RCC>
     <qresource prefix="/style">
         <file>styles.qss</file>
-    </qresource>
-    <qresource prefix="/images/backgrounds">
-        <file>background.png</file>
-        <file>Bg2.PNG</file>
-        <file>Bg1.PNG</file>
-        <file>Bg3.PNG</file>
-        <file>Bg4.PNG</file>
-        <file>Bg5.PNG</file>
-        <file>Bg6.PNG</file>
-        <file>Bg7.PNG</file>
-        <file>Bg8.PNG</file>
-    </qresource>
-    <qresource prefix="/font">
         <file>minecraft.ttf</file>
     </qresource>
-    <qresource prefix="/images/enemies">
-        <file alias="boss.png">PNG/boss.png</file>
-        <file alias="enemy1.png">PNG/enemy1.png</file>
-        <file alias="enemy2.png">PNG/enemy2.png</file>
-        <file alias="enemy3.png">PNG/enemy3.png</file>
-        <file alias="king.png">PNG/king.png</file>
-        <file alias="scanner.png">PNG/scan.png</file>
-        <file alias="chest.png">PNG/chest.png</file>
-        <file alias="mimic.png">PNG/mimic.png</file>
-        <file alias="enemy4.png">PNG/enemy4.png</file>
+    <qresource prefix="/images/Backgrounds">
+        <file alias="Bg1">PNG/Backgrounds/Bg1.PNG</file>
+        <file alias="Bg2">PNG/Backgrounds/Bg2.PNG</file>
+        <file alias="Bg3">PNG/Backgrounds/Bg3.PNG</file>
+        <file alias="Bg4">PNG/Backgrounds/Bg4.PNG</file>
+        <file alias="Bg5">PNG/Backgrounds/Bg5.PNG</file>
+        <file alias="Bg6">PNG/Backgrounds/Bg6.PNG</file>
+        <file alias="Bg7">PNG/Backgrounds/Bg7.PNG</file>
+        <file alias="Bg8">PNG/Backgrounds/Bg8.PNG</file>
+    </qresource>
+    <qresource prefix="/images/Enemies">
+        <file alias="boss">PNG/Enemies/boss.png</file>
+        <file alias="enemy1">PNG/Enemies/enemy1.png</file>
+        <file alias="enemy2">PNG/Enemies/enemy2.png</file>
+        <file alias="enemy3">PNG/Enemies/enemy3.png</file>
+        <file alias="enemy4">PNG/Enemies/enemy4.png</file>
+        <file alias="enemy5">PNG/Enemies/enemy5.png</file>
+        <file alias="enemy6">PNG/Enemies/enemy6.png</file>
+        <file alias="enemy7">PNG/Enemies/enemy7.png</file>
+        <file alias="enemy8">PNG/Enemies/enemy8.png</file>
+        <file alias="king">PNG/Enemies/king.png</file>
+        <file alias="mimic">PNG/Enemies/mimic.png</file>
+        <file alias="enemy9">PNG/Enemies/enemy9.png</file>
+        <file alias="mute">PNG/Enemies/mute.png</file>
+    </qresource>
+    <qresource prefix="/images/Items">
+        <file alias="chest">PNG/Items/chest.png</file>
+        <file alias="health">PNG/Items/health.png</file>
+        <file alias="scanner">PNG/Items/scan.png</file>
+        <file alias="scrap">PNG/Items/scrap.png</file>
     </qresource>
 </RCC>

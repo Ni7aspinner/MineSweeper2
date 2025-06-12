@@ -16,7 +16,10 @@ Cell::Cell(QSize cSize, Entity *entity, QWidget *parent)
     this->setPalette(pal);
 
     this->setFixedSize(cSize);
-    imageSize = QSize(cSize.width(),8*cSize.height()/10);
+
+    int height = 8*cSize.height()/10;
+    height -= height % 20;
+    imageSize = QSize(height,height);
     QSize valueSize = QSize(cSize.width(),2*cSize.height()/10);
 
     ui->entityButton->setFixedSize(cSize);
@@ -27,6 +30,7 @@ Cell::Cell(QSize cSize, Entity *entity, QWidget *parent)
 
     QVBoxLayout* coverLayout = new QVBoxLayout();
     coverLayout->setSpacing(0);
+    coverLayout->setAlignment(Qt::AlignCenter);
     coverLayout->setContentsMargins(0, 0, 1, 0);
     image1Label = new QLabel();
     image1Label->setAlignment(Qt::AlignCenter);
@@ -42,6 +46,7 @@ Cell::Cell(QSize cSize, Entity *entity, QWidget *parent)
 
     QVBoxLayout* entityLayout = new QVBoxLayout();
     entityLayout->setSpacing(0);
+    entityLayout->setAlignment(Qt::AlignCenter);
     entityLayout->setContentsMargins(0, 0, 1, 0);
     image2Label = new QLabel();
     image2Label->setFixedSize(imageSize);
@@ -54,7 +59,9 @@ Cell::Cell(QSize cSize, Entity *entity, QWidget *parent)
     ui->entityButton->setLayout(entityLayout);
 
     if(!entity->bg.isNull()){
-        entity->bg = entity->bg.scaled(imageSize.width()-20,imageSize.height()-20, Qt::KeepAspectRatioByExpanding, Qt::FastTransformation);
+        entity->bg = entity->bg.scaled(imageSize, Qt::KeepAspectRatioByExpanding, Qt::FastTransformation);
+        image1Label->setFixedSize(cSize.width(),imageSize.height());
+        image2Label->setFixedSize(cSize.width(), imageSize.height());
         image1Label->setPixmap(entity->bg);
         image2Label->setPixmap(entity->bg);
     }
@@ -82,6 +89,7 @@ Cell::Cell(QSize cSize, Entity *entity, QWidget *parent)
     ui->labelNValue->setPalette(labelPalette);
 
     layout = new QStackedLayout(this);
+
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 1, 1);
 

@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 
     MainWindow *w = new MainWindow(resolution.width(),resolution.height());
 
-    int id = QFontDatabase::addApplicationFont(":/font/minecraft.ttf");
+    int id = QFontDatabase::addApplicationFont(":/style/minecraft.ttf");
     QString family = QFontDatabase::applicationFontFamilies(id).at(0);
     qDebug() << "Loaded font family:" << family;
 

@@ -69,7 +69,7 @@ MainWindow::~MainWindow()
 void MainWindow::animateBg(){
     std::default_random_engine engine(std::chrono::system_clock::now().time_since_epoch().count());
     std::uniform_int_distribution<int> distX(1, 8);
-    QString bgPath = ":/images/backgrounds/Bg" +QString::number(distX(engine))+".PNG";
+    QString bgPath = ":/images/Backgrounds/Bg" +QString::number(distX(engine));
 
     bgPixMap = QPixmap(bgPath);
     bgOffset = QPoint(0, 0);
